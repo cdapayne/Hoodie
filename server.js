@@ -348,10 +348,10 @@ app.get('/api/orders', (req, res) => {
   res.json(orders);
 });
 
-// Serve React app for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+// Serve React app for all other routes (removed for now - will be handled by separate frontend server)
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

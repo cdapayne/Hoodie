@@ -131,7 +131,7 @@ function Cart({ sessionId, onCartUpdate }) {
               <span>
                 {shippingDeal && shippingDeal.discount > 0 ? (
                   <>
-                    <span className="original-price">${10.toFixed(2)}</span>
+                    <span className="original-price">${(10).toFixed(2)}</span>
                     ${shippingCost.toFixed(2)}
                   </>
                 ) : (
