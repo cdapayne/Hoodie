@@ -42,7 +42,9 @@ function Checkout({ sessionId, onCartUpdate }) {
   const handlePayment = async (e) => {
     e.preventDefault();
     
-    if (!email || !email.includes('@')) {
+    // Better email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
       alert('Please enter a valid email address');
       return;
     }

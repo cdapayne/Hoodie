@@ -79,7 +79,12 @@ initializeDataFiles();
 
 // Helper functions
 const readJsonFile = (filePath) => {
-  return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  try {
+    return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+  } catch (error) {
+    console.error(`Error reading file ${filePath}:`, error.message);
+    return null;
+  }
 };
 
 const writeJsonFile = (filePath, data) => {
@@ -91,7 +96,14 @@ const writeJsonFile = (filePath, data) => {
 // Products
 app.get('/api/products', (req, res) => {
   const products = readJsonFile(PRODUCTS_FILE);
+  if (!products) {
+    return res.status(500).json({ error: 'Error loading products' });
+  }
+  
   const config = readJsonFile(CONFIG_FILE);
+  if (!config) {
+    return res.status(500).json({ error: 'Error loading configuration' });
+  }
   
   // Add demand indicators
   const enrichedProducts = products.map(product => ({
@@ -203,10 +215,16 @@ app.delete('/api/cart/:sessionId/item/:productId', (req, res) => {
 // Email collection
 app.post('/api/emails', (req, res) => {
   const emails = readJsonFile(EMAILS_FILE);
+  if (!emails) {
+    return res.status(500).json({ error: 'Error reading email list' });
+  }
+  
   const { email } = req.body;
   
-  if (!email || !email.includes('@')) {
-    return res.status(400).json({ error: 'Invalid email' });
+  // Better email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!email || !emailRegex.test(email)) {
+    return res.status(400).json({ error: 'Invalid email address' });
   }
   
   if (!emails.find(e => e.email === email)) {

@@ -1,7 +1,7 @@
 {
   "name": "hoodie",
   "version": "1.0.0",
-  "description": "Clothing stkr",
+  "description": "Clothing store",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
