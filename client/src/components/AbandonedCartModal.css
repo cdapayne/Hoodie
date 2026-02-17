@@ -1,0 +1,147 @@
+.abandoned-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 26, 26, 0.7);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+}
+
+.abandoned-modal {
+  background: var(--secondary);
+  padding: 3rem;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  animation: slideUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.abandoned-close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.abandoned-close:hover {
+  color: var(--primary);
+}
+
+.abandoned-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--gold);
+}
+
+.abandoned-modal h2 {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+}
+
+.abandoned-subtitle {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+}
+
+.abandoned-items {
+  background: var(--cream);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid var(--border);
+}
+
+.abandoned-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.abandoned-item:last-child {
+  border-bottom: none;
+}
+
+.abandoned-item-name {
+  color: var(--primary);
+  font-weight: 300;
+}
+
+.abandoned-item-price {
+  font-weight: 500;
+  font-family: var(--font-serif);
+}
+
+.abandoned-more {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+  font-weight: 300;
+}
+
+.abandoned-offer {
+  background: var(--cream);
+  border: 1px solid var(--gold-light);
+  padding: 0.875rem 1.25rem;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  letter-spacing: 0.3px;
+  font-weight: 300;
+}
+
+.abandoned-offer strong {
+  color: var(--gold);
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.abandoned-cta {
+  width: 100%;
+  padding: 1rem !important;
+  font-size: 0.75rem !important;
+  margin-bottom: 0.75rem;
+  letter-spacing: 3px;
+}
+
+.abandoned-dismiss {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 0.7rem;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+  font-family: var(--font-sans);
+}
+
+.abandoned-dismiss:hover {
+  color: var(--gold);
+}

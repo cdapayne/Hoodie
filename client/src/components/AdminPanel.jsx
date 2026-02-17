@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import MarketingManager from './MarketingManager';
 import './AdminPanel.css';
 
 const API_URL = 'http://localhost:3001/api';
@@ -106,6 +107,12 @@ function AdminPanel() {
             Email List
           </button>
           <button
+            className={`tab ${activeTab === 'marketing' ? 'active' : ''}`}
+            onClick={() => setActiveTab('marketing')}
+          >
+            Marketing
+          </button>
+          <button
             className={`tab ${activeTab === 'settings' ? 'active' : ''}`}
             onClick={() => setActiveTab('settings')}
           >
@@ -130,6 +137,8 @@ function AdminPanel() {
           {activeTab === 'orders' && <OrdersTab orders={orders} />}
 
           {activeTab === 'emails' && <EmailsTab emails={emails} />}
+
+          {activeTab === 'marketing' && <MarketingManager />}
 
           {activeTab === 'settings' && (
             <SettingsTab config={config} onUpdate={handleUpdateConfig} />
@@ -201,6 +210,7 @@ function ProductsTab({ products, onAdd, onUpdate, onDelete, editingProduct, setE
 }
 
 function ProductForm({ product, onSubmit, onCancel }) {
+  const [uploading, setUploading] = useState(false);
   const [formData, setFormData] = useState(product || {
     name: '',
     description: '',
@@ -208,8 +218,37 @@ function ProductForm({ product, onSubmit, onCancel }) {
     stock: '',
     category: 'hoodies',
     isLimited: false,
-    imageUrl: '/images/default.jpg'
+    imageUrl: '/images/default.jpg',
+    featuredImage: '',
+    images: [],
+    videoUrl: '',
+    reviews: []
   });
+
+  const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    setUploading(true);
+    const formData = new FormData();
+    formData.append('file', file);
+
+    try {
+      const response = await axios.post(`${API_URL}/upload`, formData, {
+        headers: { 'Content-Type': 'multipart/form-data' }
+      });
+      const fullUrl = `http://localhost:3001${response.data.url}`;
+      setFormData(prev => ({
+        ...prev,
+        images: [...(prev.images || []), fullUrl]
+      }));
+      alert('Image uploaded successfully!');
+    } catch (error) {
+      alert('Upload failed: ' + (error.response?.data?.error || error.message));
+    }
+    setUploading(false);
+    e.target.value = '';
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -218,6 +257,25 @@ function ProductForm({ product, onSubmit, onCancel }) {
       price: parseFloat(formData.price),
       stock: parseInt(formData.stock)
     });
+  };
+
+  const handleAddImage = () => {
+    const imageUrl = prompt('Enter image URL:');
+    if (imageUrl) {
+      setFormData({
+        ...formData,
+        images: [...(formData.images || []), imageUrl]
+      });
+    }
+  };
+
+  const handleRemoveImage = (index) => {
+    const newImages = formData.images.filter((_, i) => i !== index);
+    setFormData({...formData, images: newImages});
+  };
+
+  const handleSetFeaturedImage = (imageUrl) => {
+    setFormData({...formData, featuredImage: imageUrl});
   };
 
   return (
@@ -274,6 +332,73 @@ function ProductForm({ product, onSubmit, onCancel }) {
             <option value="pants">Pants</option>
             <option value="accessories">Accessories</option>
           </select>
+        </div>
+      </div>
+
+      <div className="form-group">
+        <label>Main Image URL</label>
+        <input
+          type="text"
+          value={formData.imageUrl}
+          onChange={(e) => setFormData({...formData, imageUrl: e.target.value})}
+          placeholder="https://example.com/image.jpg"
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Video URL (optional)</label>
+        <input
+          type="text"
+          value={formData.videoUrl || ''}
+          onChange={(e) => setFormData({...formData, videoUrl: e.target.value})}
+          placeholder="https://example.com/video.mp4"
+        />
+      </div>
+
+      <div className="form-group">
+        <label>Product Images Gallery</label>
+        <div className="image-gallery-manager">
+          <input
+            type="file"
+            id="product-image-upload"
+            accept="image/*"
+            onChange={handleFileUpload}
+            style={{ display: 'none' }}
+          />
+          <label htmlFor="product-image-upload" className="btn btn-secondary" style={{ cursor: 'pointer' }}>
+            {uploading ? '⏳ Uploading...' : '📤 Upload Image'}
+          </label>
+          <button type="button" className="btn btn-secondary" onClick={handleAddImage}>
+            🔗 Add from URL
+          </button>
+          {formData.images && formData.images.length > 0 && (
+            <div className="image-list">
+              {formData.images.map((img, index) => (
+                <div key={index} className="image-item">
+                  <img src={img} alt={`Product ${index + 1}`} />
+                  <div className="image-actions">
+                    <button 
+                      type="button"
+                      className={`btn btn-sm ${formData.featuredImage === img ? 'btn-primary' : 'btn-secondary'}`}
+                      onClick={() => handleSetFeaturedImage(img)}
+                    >
+                      {formData.featuredImage === img ? '⭐ Featured' : 'Set as Featured'}
+                    </button>
+                    <button 
+                      type="button"
+                      className="btn btn-sm btn-danger"
+                      onClick={() => handleRemoveImage(index)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+          {formData.featuredImage && (
+            <p className="featured-note">Featured image will appear on product cards</p>
+          )}
         </div>
       </div>
 
