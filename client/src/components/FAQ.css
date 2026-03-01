@@ -1,0 +1,161 @@
+.faq-page {
+  padding: 4rem 0;
+  min-height: 80vh;
+}
+
+.faq-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.faq-header h1 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.faq-header p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faq-item.open {
+  border-bottom-color: var(--gold);
+}
+
+.faq-question {
+  width: 100%;
+  padding: 1.5rem 0;
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  font-family: var(--font-sans);
+  letter-spacing: 0.3px;
+}
+
+.faq-question:hover {
+  color: var(--gold);
+}
+
+.faq-question span:first-child {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.faq-icon {
+  font-size: 1.25rem;
+  font-weight: 300;
+  min-width: 30px;
+  text-align: center;
+  color: var(--gold);
+}
+
+.faq-answer {
+  padding: 0 0 1.5rem;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.faq-answer p {
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin: 0;
+  font-weight: 300;
+  font-size: 0.88rem;
+}
+
+.faq-contact {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--primary);
+  color: white;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-contact h2 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.faq-contact p {
+  font-size: 0.88rem;
+  margin-bottom: 2rem;
+  opacity: 0.7;
+  font-weight: 300;
+}
+
+.faq-contact .btn {
+  background: var(--gold) !important;
+  color: var(--primary) !important;
+  font-weight: 500;
+  letter-spacing: 2px;
+  font-size: 0.75rem !important;
+  padding: 0.875rem 2.5rem !important;
+}
+
+.faq-contact .btn:hover {
+  background: var(--accent-dark) !important;
+}
+
+@media (max-width: 768px) {
+  .faq-page {
+    padding: 2rem 0;
+  }
+
+  .faq-header h1 {
+    font-size: 2rem;
+  }
+
+  .faq-question {
+    padding: 1.25rem 0;
+    font-size: 0.9rem;
+  }
+
+  .faq-answer {
+    padding: 0 0 1rem;
+  }
+
+  .faq-contact {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .faq-contact h2 {
+    font-size: 1.5rem;
+  }
+}

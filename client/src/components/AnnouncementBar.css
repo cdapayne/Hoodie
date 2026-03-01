@@ -1,0 +1,43 @@
+.announcement-bar {
+  background: var(--primary);
+  color: var(--gold);
+  text-align: center;
+  padding: 0.6rem 2rem;
+  font-size: 0.65rem;
+  font-weight: 400;
+  position: relative;
+  z-index: 1001;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: slideDown 0.4s ease;
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+.announcement-text {
+  animation: fadeSwitch 4s ease infinite;
+}
+
+@keyframes fadeSwitch {
+  0%, 90%, 100% { opacity: 1; }
+  95%           { opacity: 0; }
+}
+
+.announcement-close {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1rem;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+
+.announcement-close:hover { opacity: 1; }

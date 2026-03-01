@@ -1,0 +1,32 @@
+# Dependencies
+node_modules/
+client/node_modules/
+
+# Build files
+client/dist/
+client/build/
+
+# Data files (optional - remove if you want to commit initial data)
+data/*.json
+
+# Environment variables
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+tmp/
+temp/

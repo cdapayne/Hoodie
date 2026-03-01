@@ -1,0 +1,231 @@
+.marketing-manager {
+  padding: 2rem 0;
+}
+
+.marketing-manager h2 {
+  margin-bottom: 2rem;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+}
+
+.mm-section {
+  background: var(--secondary);
+  border: 1px solid var(--border);
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.mm-section h3 {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: 0.3px;
+}
+
+.section-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+/* Upload Area */
+.upload-area {
+  border: 1px dashed var(--border);
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--cream);
+  margin-bottom: 2rem;
+}
+
+#file-upload {
+  display: none;
+}
+
+.upload-btn {
+  display: inline-block;
+  padding: 0.875rem 2.5rem;
+  background: var(--primary);
+  color: var(--gold);
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.3s;
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.upload-btn:hover {
+  background: #333;
+}
+
+.upload-hint {
+  margin-top: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+/* Files Grid */
+.files-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.no-files {
+  text-align: center;
+  color: var(--text-muted);
+  padding: 2rem;
+  font-weight: 300;
+}
+
+.file-card {
+  border: 1px solid var(--border);
+  overflow: hidden;
+  background: var(--secondary);
+}
+
+.file-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+}
+
+.file-icon {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  background: var(--cream);
+  color: var(--text-muted);
+}
+
+.file-info {
+  padding: 0.75rem;
+}
+
+.file-name {
+  font-size: 0.72rem;
+  color: var(--primary);
+  word-break: break-all;
+  margin-bottom: 0.25rem;
+  font-weight: 400;
+}
+
+.file-size {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.file-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.btn-copy,
+.btn-delete {
+  flex: 1;
+  padding: 0.4rem;
+  font-size: 0.7rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.5px;
+}
+
+.btn-copy {
+  background: var(--primary);
+  color: var(--gold);
+}
+
+.btn-copy:hover {
+  background: #333;
+}
+
+.btn-delete {
+  background: #8b4545;
+  color: white;
+}
+
+.btn-delete:hover {
+  background: #6d3535;
+}
+
+/* Announcements */
+.announcements-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.announcement-item {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.announcement-item input {
+  flex: 1;
+}
+
+.btn-remove {
+  background: #8b4545;
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.btn-remove:hover {
+  background: #6d3535;
+}
+
+/* Form Grid */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Actions */
+.mm-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-large {
+  padding: 1rem 3rem;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
+}
+
+@media (max-width: 768px) {
+  .mm-section {
+    padding: 1rem;
+  }
+
+  .files-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
